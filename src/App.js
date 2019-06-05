@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  state = {
+    name: "one way bind"
+  };
+
+  changeName = newName => {
+    this.setState({
+      name: newName
+    });
+  };
+
+  handleChange = event => {
+    this.setState({
+      name: event.target.value
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        {/* <button
+          onClick={this.changeName.bind(this, "Change by clicking button")}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Change using Bind
+        </button> */}
+        {/* two way binding */}
+        <input
+          type="text"
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
+        <div>{this.state.name}</div>
+      </div>
+    );
+  }
 }
 
 export default App;
